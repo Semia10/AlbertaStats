@@ -1,4 +1,4 @@
-PROJECT TITLE: DBRRJ_ANALYSIS
+PROJECT TITLE: DBRRJ-ANALYTICS
 
 DESCRIPTION: Statistical analysis of what key factors contribute to the likelihood of what the 
 	     majority riding (Provincial Election) will be in each city based on:
