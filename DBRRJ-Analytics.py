@@ -1,3 +1,4 @@
+import csv
 import pymongo
 from pymongo import MongoClient
 
@@ -15,6 +16,7 @@ data = open("data.csv")
 for line in data:
     id = 0
     riding_val = '{"_id":' + id + ', '
+    + '"District:"' + line[?] + ', '
     + '"Unemployment Rate:"' + line[?] + ', '
     + '"Household Income:"' + line[?] + ', '
     + '"Age [20-34]:"' + line[?] + ', '
@@ -22,17 +24,22 @@ for line in data:
     + '"Age [50-64]:"' + line[?] + ', '
     + '"Age [65+]:"' + line[?] + ', '
     + '"Immigrants:"' + line[?] + ', '
-    + '"Ethnicity:"' + line[?] + ', '
+    + '"White:"' + line[?] + ', '
+    + '"Asian:"' + line[?] + ', '
+    + '"Middle Eastern:"' + line[?] + ', '
+    + '"African:"' + line[?] + ', '
+    + '"Hispanic:"' + line[?] + ', '
     + '"No Certificate:"' + line[?] + ', '
     + '"HS Diploma:"' + line[?] + ', '
-    + '"Undergraduate:"' + line[?] + ', '
-    + '"Graduate:"' + line[?] + ', '
-    + '"Historical [2003]:"' + line[?] + ', '
-    + '"Historical [2007]:"' + line[?] + ', '
-    + '"Historical [2011]:"' + line[?] + ', '
-    + '"Historical [2015]:"' + line[?] + ', '
+    + '"Post-Secondary:"' + line[?] + ', '
     + '"Historical [2019]:"' + line[?] + '}'
 
     riding.insert_one(riding_val)
 
     id++
+
+
+    # + '"Historical [2003]:"' + line[?] + ', '
+    # + '"Historical [2007]:"' + line[?] + ', '
+    # + '"Historical [2011]:"' + line[?] + ', '
+    # + '"Historical [2015]:"' + line[?] + ', '

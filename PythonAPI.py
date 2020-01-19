@@ -6,67 +6,61 @@ app.config["DEBUG"] = True
 
 @app.route('/http://ridings.domain.com/map/', methods=['GET'])
 #?format=json&proxtext=fire
+
 def api_id():
-
-    # Check if an ID was provided as part of the URL.
-    # If ID is provided, assign it to a variable.
-    # If no ID is provided, display an error in the browser.
-    if 'id' in request.args:
-        id = int(request.args['id'])
-    else:
-        return "Error: No id field provided. Please specify an id."
-
-    # Create an empty list for our results
-    results = ["Result"]
-
-    # Loop through the data and match results that fit the requested ID.
-    # IDs are unique, but other fields might return many results
-    # for book in books:
-    #    if book['id'] == id:
-    #        results.append(book)
-
-    # Use the jsonify function from Flask to convert our list of
-    # Python dictionaries to the JSON format.
-    return jsonify(results)
 
     #Quering for districts that match the given conditions
 
     #Database
-        #provincial = cluster["Provincial"]
+    provincial = cluster["Provincial"]
 
     #Collections
-        #riding = provincial["Riding"]
+    riding = provincial["Riding"]
 
-    #Query [Employment Rate] in terms of PERCENTAGE
+    #Query [Unemployment Rate] in terms of PERCENTAGE
     #Users can define percentage which will then be counted as input
+    riding.find({"District":{"Unemployment:" {$gte $USERINPUT ==> ?}})
 
     #Query [Household Income] in terms of REAL INT
     #Users can define percentage which will then be counted as input
-
-
-    #Query [Crime Rate] in terms of PERCENTAGE
-    #Users can define percentage which will then be counted as input
-
+    riding.find({"District":{"Household Income":{$gte $USERINPUT ==> ?}})
 
     #Query [Age Group] in terms of INT RANGE
     #Range will be pre-determined and users can select from a set of age ranges
+    riding.find({"District":{$USERINPUT:"Age [20-34]"}})
+    riding.find({"District":{$USERINPUT:"Age [35-49]"}})
+    riding.find({"District":{$USERINPUT:"Age [50-64]"}})
+    riding.find({"District":{$USERINPUT:"Age [65+]"}})
 
-
-    #Query [Immigration Group] in terms of PERCENTAGE
+    #Query [Immigrants] in terms of PERCENTAGE
     #Users can define percentage which will then be counted as input
-
+    riding.find({"District":{"Immigrants":{$gte $USERINPUT ==> ?}}})
 
     #Query [Ethnicity] in terms of PERCENTAGE
     #Users can define percentage which will then be counted as input
-
+    riding.find({"District":{"White":{$gte $USERINPUT ==> ?}}})
+    riding.find({"District":{"Asian":{$gte $USERINPUT ==> ?}}})
+    riding.find({"District":{"African":{$gte $USERINPUT ==> ?}}})
+    riding.find({"District":{"Hispanic":{$gte $USERINPUT ==> ?}}})
+    riding.find({"District":{"Middle Eastern":{$gte $USERINPUT ==> ?}}})
 
     #Query [Education Level] in terms of 4 DISTINCT CATEGORIES
-    #1) NO CERTIFICATE 2) HIGH SCHOOL DIPLOMA 3) UNDERGRADUATE 4) GRADUATE
+    #1) NO CERTIFICATE 2) HIGH SCHOOL DIPLOMA 3) Post-Secondary
     #Education levels will be pre-determined and users can select from a set of categories
 
+    riding.find({"District":{$USERINPUT ==> ?}})
+    riding.find({"District":{$USERINPUT ==> ?}})
+    riding.find({"District":{$USERINPUT ==> ?}})
 
-    #Query [Historical] in terms of YEAR & PARTY
-    #Users can define an input for year and can select from a set list of parties
+    #Query [Historical] in terms of DISTRICT
+    #Lists the previous 5 parties voted in a specific DISTRICT
+    riding.find({"Historical [2003]":{"DISTRICT":{$USERINPUT ==> ?}}})
+    riding.find({"Historical [2007]":{"DISTRICT":{$USERINPUT ==> ?}}})
+    riding.find({"Historical [2011]":{"DISTRICT":{$USERINPUT ==> ?}}})
+    riding.find({"Historical [2015]":{"DISTRICT":{$USERINPUT ==> ?}}})
+    riding.find({"Historical [2019]":{"DISTRICT":{$USERINPUT ==> ?}}})
+
+    return jsonify(results)
 
 @app.route('/', methods=['GET'])
 
