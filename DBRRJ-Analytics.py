@@ -15,11 +15,8 @@ riding = provincial["Riding"]
 data = open("data_utf.csv")
 csv_reader = csv.reader(data)
 
-
 for line in csv_reader:
-    print(line[5])
-    # id = 0
-    # riding_val = '{"_id":' + id + ', '
+    # riding_val = '{"_id":' + line[?] + ', '
     # + '"District:"' + line[?] + ', '
     # + '"Unemployment Rate:"' + line[?] + ', '
     # + '"Household Income:"' + line[?] + ', '
@@ -37,10 +34,8 @@ for line in csv_reader:
     # + '"HS Diploma:"' + line[?] + ', '
     # + '"Post-Secondary:"' + line[?] + ', '
     # + '"Historical [2019]:"' + line[?] + '}'
-
+    #
     # riding.insert_one(riding_val)
-
-    # id++
 
 
     # + '"Historical [2003]:"' + line[?] + ', '
