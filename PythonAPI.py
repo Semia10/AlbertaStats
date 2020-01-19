@@ -1,20 +1,19 @@
-import flask
 import pymongo
 from pymongo import MongoClient
-from flask import request, jsonify, redirect
+from flask import request, jsonify, redirect, Flask
 
 #Connecting to Mongo
 cluster = MongoClient("mongodb+srv://admin:danielhan@dbrrj-analytics-era6x.gcp.mongodb.net/test?retryWrites=true&w=majority")
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 app.config["DEBUG"] = True
 
 new_url = 'http://albertastats.web.app'
-@app.route('/', methods=['GET'])
+@app.route('/home/ryank/Desktop/Documents/HackED2020/DBRRJ-Analytics-HackED2020/public/d3/', methods=['GET'])
 
-def map():
+# def map():
 
-    return redirect(new_url, code=302)
+#     return redirect(new_url, code=302)
 
 @app.route('/', methods=['GET', 'POST'])
 
