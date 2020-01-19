@@ -22,10 +22,6 @@ DESCRIPTION: Statistical analysis of what key factors contribute to the Provinci
 6) Immigrants (% of POP)
 
 7) Historical (Year:Party)
-- [2003]
-- [2007]
-- [2011]
-- [2015]
 - [2019]
 *In no particular importance
 
