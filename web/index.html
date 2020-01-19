@@ -75,6 +75,7 @@
 </head>
 
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js"></script>
     <script src="//d3js.org/queue.v1.min.js"></script>
 
@@ -123,34 +124,31 @@
 
             if (active == id.toElement) {
                 active = null;
+                displayInfo("");
             } else {
                 // set new active
                 active = id.toElement;
-                // sendInfo(id.toElement.id.substring(1))
+                sendInfo(id.toElement.id.substring(1))
                 d3.select(id.toElement).attr("class", "cls-4");
                 displayInfo(active.id.substring(1));
             }
+
         }
 
         function sendInfo(yeet) {
-            console.log(yeet);
-
-            // Sending and receiving data in JSON format using POST method
-            //s
-            var xhr = new XMLHttpRequest();
-            var url = "url";
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var json = JSON.parse(xhr.responseText);
-                    console.log(json.email + ", " + json.password);
-                }
+            postData = {
+                'id': yeet
             };
-            var data = JSON.stringify({
-                "id": id
+
+            $.ajax({
+                url: "/output",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(yeet),
+                success: function(data) {
+                    displayInfo(data)
+                }
             });
-            xhr.send(data);
         }
 
         function recInfo() {
