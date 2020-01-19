@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<!--
+Example of how to make a static SVG file interactive and partly animated.
+
+Author: Markus Konrad <markus.konrad@wzb.eu>
+See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
+-->
+
+<html>
+
+<head>
+
+    <title>HackED 2020</title>
+
+    <meta charset="utf-8">
+    <script src="d3.js"></script>
+    <style>
+        body {
+            background-color: rgb(0, 158, 169);
+            color: white;
+            font-family: sans-serif;
+        }
+        
+        .background {
+            fill: none;
+        }
+        
+        .sidebar {
+            top: 0;
+            left: 0;
+            width: 25%;
+            height: 100%;
+            position: fixed;
+            background-color: rgb(0, 38, 41);
+            margin: 0px;
+            padding: 0 px;
+        }
+        
+        .sidebar h1 {
+            margin: 0px;
+            padding: 5px;
+        }
+        
+        #map_container {
+            position: relative;
+            padding: 0px;
+            margin: 0px;
+            width: 75%;
+            float: right;
+            overflow: hidden;
+        }
+        
+        #map {
+            border: 5px solid rgb(0, 128, 149);
+        }
+        
+        svg #districts {
+            fill: none;
+        }
+        
+        svg #districts .cls-3 {
+            fill: blue;
+            stroke: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="//d3js.org/queue.v1.min.js"></script>
+
+    <div class='sidebar'>
+        <h1>Riding your Mom</h1>
+    </div>
+    <div id="map_container"></div>
+
+    <script>
+        var main_chart_svg = d3.select("#map_container")
+            .append("svg")
+            .attr('width', '750px').attr('height', '750px');
+
+        // d3.xml('fuckasdfa.svg').then(data => {
+        //     d3.select('body').select('#map_container').node().append(data.documentElement)
+        // });        
+
+        var alberta;
+
+        d3.xml('districts.svg', function(error, xml) {
+            if (error) throw error;
+
+            var svgMap = xml.getElementsByTagName('g')[0];
+
+            alberta = main_chart_svg.node().append(svgMap);
+        });
+
+        console.log(alberta);
+    </script>
+
+</body>
+
+</html>
