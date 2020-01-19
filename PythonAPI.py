@@ -19,11 +19,11 @@ def api_id():
 
     #Query [Unemployment Rate] in terms of PERCENTAGE
     #Users can define percentage which will then be counted as input
-    riding.find({"District":{"Unemployment:" {$gte $USERINPUT ==> ?}})
+    riding.find({"District":{"Unemployment:" {$gte:$USERINPUT ==> ?}})
 
     #Query [Household Income] in terms of REAL INT
     #Users can define percentage which will then be counted as input
-    riding.find({"District":{"Household Income":{$gte $USERINPUT ==> ?}})
+    riding.find({"District":{"Household Income":{$gte:$USERINPUT ==> ?}})
 
     #Query [Age Group] in terms of INT RANGE
     #Range will be pre-determined and users can select from a set of age ranges
@@ -34,15 +34,15 @@ def api_id():
 
     #Query [Immigrants] in terms of PERCENTAGE
     #Users can define percentage which will then be counted as input
-    riding.find({"District":{"Immigrants":{$gte $USERINPUT ==> ?}}})
+    riding.find({"District":{"Immigrants":{$gte:$USERINPUT ==> ?}}})
 
     #Query [Ethnicity] in terms of PERCENTAGE
     #Users can define percentage which will then be counted as input
-    riding.find({"District":{"White":{$gte $USERINPUT ==> ?}}})
-    riding.find({"District":{"Asian":{$gte $USERINPUT ==> ?}}})
-    riding.find({"District":{"African":{$gte $USERINPUT ==> ?}}})
-    riding.find({"District":{"Hispanic":{$gte $USERINPUT ==> ?}}})
-    riding.find({"District":{"Middle Eastern":{$gte $USERINPUT ==> ?}}})
+    riding.find({"District":{"White":{$gte:$USERINPUT ==> ?}}})
+    riding.find({"District":{"Asian":{$gte:$USERINPUT ==> ?}}})
+    riding.find({"District":{"African":{$gte:$USERINPUT ==> ?}}})
+    riding.find({"District":{"Hispanic":{$gte:$USERINPUT ==> ?}}})
+    riding.find({"District":{"Middle Eastern":{$gte:$USERINPUT ==> ?}}})
 
     #Query [Education Level] in terms of 4 DISTINCT CATEGORIES
     #1) NO CERTIFICATE 2) HIGH SCHOOL DIPLOMA 3) Post-Secondary
