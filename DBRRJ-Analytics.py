@@ -38,9 +38,3 @@ for line in csv_reader:
     "Historical [2019]":line[18]}
 
     riding.insert_one(riding_val)
-
-
-    # + '"Historical [2003]:"' + line[?] + ', '
-    # + '"Historical [2007]:"' + line[?] + ', '
-    # + '"Historical [2011]:"' + line[?] + ', '
-    # + '"Historical [2015]:"' + line[?] + ', '
