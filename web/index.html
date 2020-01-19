@@ -21,11 +21,11 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
             color: white;
             font-family: sans-serif;
         }
-        
+
         .background {
             fill: none;
         }
-        
+
         .sidebar {
             top: 0;
             left: 0;
@@ -36,12 +36,12 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
             margin: 0px;
             padding: 0 px;
         }
-        
+
         .sidebar h1 {
             margin: 0px;
             padding: 5px;
         }
-        
+
         #map_container {
             position: relative;
             padding: 0px;
@@ -50,15 +50,15 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
             float: right;
             overflow: hidden;
         }
-        
+
         #map {
             border: 5px solid rgb(0, 128, 149);
         }
-        
+
         svg #districts {
             fill: none;
         }
-        
+
         svg #districts .cls-3 {
             fill: blue;
             stroke: black;
@@ -83,7 +83,7 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
 
         // d3.xml('fuckasdfa.svg').then(data => {
         //     d3.select('body').select('#map_container').node().append(data.documentElement)
-        // });        
+        // });
 
         var alberta;
 
@@ -92,10 +92,19 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
 
             var svgMap = xml.getElementsByTagName('g')[0];
 
+            for (var i = 0; i < svgMap.children.length; i++) {
+                svgMap.children[i].onclick = clicked;
+            }
+
             alberta = main_chart_svg.node().append(svgMap);
         });
 
         console.log(alberta);
+
+        function clicked(id) {
+            console.log(id);
+            // set id.target's colour/zoom in on id.target
+        }
     </script>
 
 </body>
