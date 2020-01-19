@@ -12,31 +12,34 @@ provincial = cluster["Provincial"]
 riding = provincial["Riding"]
 
 #Read parsed information into dict format
-data = open("data.csv")
-for line in data:
-    id = 0
-    riding_val = '{"_id":' + id + ', '
-    + '"District:"' + line[?] + ', '
-    + '"Unemployment Rate:"' + line[?] + ', '
-    + '"Household Income:"' + line[?] + ', '
-    + '"Age [20-34]:"' + line[?] + ', '
-    + '"Age [35-49]:"' + line[?] + ', '
-    + '"Age [50-64]:"' + line[?] + ', '
-    + '"Age [65+]:"' + line[?] + ', '
-    + '"Immigrants:"' + line[?] + ', '
-    + '"White:"' + line[?] + ', '
-    + '"Asian:"' + line[?] + ', '
-    + '"Middle Eastern:"' + line[?] + ', '
-    + '"African:"' + line[?] + ', '
-    + '"Hispanic:"' + line[?] + ', '
-    + '"No Certificate:"' + line[?] + ', '
-    + '"HS Diploma:"' + line[?] + ', '
-    + '"Post-Secondary:"' + line[?] + ', '
-    + '"Historical [2019]:"' + line[?] + '}'
+data = open("data_utf.csv")
+csv_reader = csv.reader(data)
 
-    riding.insert_one(riding_val)
+for line in csv_reader:
+    print(line)
+    # id = 0
+    # riding_val = '{"_id":' + id + ', '
+    # + '"District:"' + line[?] + ', '
+    # + '"Unemployment Rate:"' + line[?] + ', '
+    # + '"Household Income:"' + line[?] + ', '
+    # + '"Age [20-34]:"' + line[?] + ', '
+    # + '"Age [35-49]:"' + line[?] + ', '
+    # + '"Age [50-64]:"' + line[?] + ', '
+    # + '"Age [65+]:"' + line[?] + ', '
+    # + '"Immigrants:"' + line[?] + ', '
+    # + '"White:"' + line[?] + ', '
+    # + '"Asian:"' + line[?] + ', '
+    # + '"Middle Eastern:"' + line[?] + ', '
+    # + '"African:"' + line[?] + ', '
+    # + '"Hispanic:"' + line[?] + ', '
+    # + '"No Certificate:"' + line[?] + ', '
+    # + '"HS Diploma:"' + line[?] + ', '
+    # + '"Post-Secondary:"' + line[?] + ', '
+    # + '"Historical [2019]:"' + line[?] + '}'
 
-    id++
+    # riding.insert_one(riding_val)
+    #
+    # id++
 
 
     # + '"Historical [2003]:"' + line[?] + ', '
