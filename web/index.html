@@ -16,9 +16,17 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
     <meta charset="utf-8">
     <script src="d3.js"></script>
     <style>
+         :root {
+            --dark: #17252A;
+            --dim: #2B7A78;
+            --hilite: #3AAFA9;
+            --light: #DEF2F1;
+            --white: #FEFFFF;
+        }
+        
         body {
-            background-color: rgb(0, 158, 169);
-            color: white;
+            background-color: var(--white);
+            color: var(--white);
             font-family: sans-serif;
         }
         
@@ -32,7 +40,7 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
             width: 25%;
             height: 100%;
             position: fixed;
-            background-color: rgb(0, 38, 41);
+            background-color: #17252a;
             margin: 0px;
             padding: 0 px;
         }
@@ -60,8 +68,8 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
         }
         
         svg #districts .cls-3 {
-            fill: blue;
-            stroke: black;
+            fill: var(--dim);
+            stroke: var(--white);
         }
     </style>
 
