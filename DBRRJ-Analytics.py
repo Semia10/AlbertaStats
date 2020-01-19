@@ -17,7 +17,9 @@ csv_reader = csv.reader(data)
 
 
 for line in csv_reader:
-    print(line[5])
+    temp = line[0].split(',')
+    print(temp)
+
     # id = 0
     # riding_val = '{"_id":' + id + ', '
     # + '"District:"' + line[?] + ', '
