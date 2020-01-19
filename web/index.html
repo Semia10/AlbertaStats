@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 
-<!--
-Example of how to make a static SVG file interactive and partly animated.
-
-Author: Markus Konrad <markus.konrad@wzb.eu>
-See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
--->
-
 <html>
 
 <head>
@@ -30,10 +23,6 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
             font-family: sans-serif;
         }
         
-        .background {
-            fill: none;
-        }
-        
         .sidebar {
             top: 0;
             left: 0;
@@ -46,6 +35,11 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
         }
         
         .sidebar h1 {
+            margin: 0px;
+            padding: 5px;
+        }
+        
+        .sidebar span {
             margin: 0px;
             padding: 5px;
         }
@@ -86,6 +80,7 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
 
     <div class='sidebar'>
         <h1>Alberta Stats</h1>
+        <span id="display"></span>
     </div>
     <div id="map_container"></div>
 
@@ -93,10 +88,6 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
         var main_chart_svg = d3.select("#map_container")
             .append("svg")
             .attr('width', '750px').attr('height', '750px');
-
-        // d3.xml('fuckasdfa.svg').then(data => {
-        //     d3.select('body').select('#map_container').node().append(data.documentElement)
-        // });
 
         var active;
         var alberta;
@@ -126,20 +117,7 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
             alberta = main_chart_svg.node().append(svgMap);
         });
 
-        console.log(alberta);
-
         function clicked(id) {
-            // console.log(id);
-            // set id.target's colour/zoom in on id.target
-            console.log(id.toElement.id);
-            sendInfo();
-            d3.select(id.toElement).attr("class", "cls-4");
-        }
-
-        function clicked(id) {
-            console.log(id);
-            // set id.target's colour/zoom in on id.target            
-
             // reset prev. selection to normal 
             d3.select(active).attr("class", "cls-3");
 
@@ -148,25 +126,42 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
             } else {
                 // set new active
                 active = id.toElement;
-                sendInfo(id.toElement.id.substring(1))
+                // sendInfo(id.toElement.id.substring(1))
                 d3.select(id.toElement).attr("class", "cls-4");
+                displayInfo(active.id.substring(1));
             }
         }
 
         function sendInfo(yeet) {
             console.log(yeet);
-            return;
-            var hiRyan = {
-                id: yeet
-            }
-            var myJSON = JSON.stringify(hiRyan);
-            window.location = "demo_json.php?x=" + myJSON;
+
+            // Sending and receiving data in JSON format using POST method
+            //s
+            var xhr = new XMLHttpRequest();
+            var url = "url";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.email + ", " + json.password);
+                }
+            };
+            var data = JSON.stringify({
+                "id": id
+            });
+            xhr.send(data);
         }
 
         function recInfo() {
             document.getElementById("demo").innerHTML = myObj.name;
         }
 
+        function displayInfo(info) {
+            document.getElementById("display").textContent = info;
+        }
+
+        // code from http://bl.ocks.org/catherinekerr/e345a906f8e2bae8d07dbc79f8f04036  by Catherine Kerr
         function zoomed(d) {
             /* Thanks to http://complextosimple.blogspot.ie/2012/10/zoom-and-center-with-d3.html 	*/
             /* for a simple explanation of transform scale and translation  			*/
@@ -206,8 +201,8 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
 
         function getBoundingBox(selection) {
             /* get x,y co-ordinates of top-left of bounding box and width and height */
-            var element = selection.node();
-            var bbox = element.getBBox();
+
+            var bbox = selection.getBBox();
             cx = bbox.x + bbox.width / 2;
             cy = bbox.y + bbox.height / 2;
             return [bbox.x, bbox.width, bbox.y, bbox.height, cx, cy];
