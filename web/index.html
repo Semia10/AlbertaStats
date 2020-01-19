@@ -129,16 +129,16 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
         console.log(alberta);
 
         function clicked(id) {
-            console.log(id);
+            // console.log(id);
             // set id.target's colour/zoom in on id.target
-            console.log(id.toElement);
+            console.log(id.toElement.id);
+            sendInfo();
             d3.select(id.toElement).attr("class", "cls-4");
         }
 
         function clicked(id) {
             console.log(id);
-            // set id.target's colour/zoom in on id.target
-            console.log(id.toElement);
+            // set id.target's colour/zoom in on id.target            
 
             // reset prev. selection to normal 
             d3.select(active).attr("class", "cls-3");
@@ -148,8 +148,23 @@ See https://datascience.blog.wzb.eu/2016/08/29/bringing-svg-to-life-with-d3-js/
             } else {
                 // set new active
                 active = id.toElement;
+                sendInfo(id.toElement.id.substring(1))
                 d3.select(id.toElement).attr("class", "cls-4");
             }
+        }
+
+        function sendInfo(yeet) {
+            console.log(yeet);
+            return;
+            var hiRyan = {
+                id: yeet
+            }
+            var myJSON = JSON.stringify(hiRyan);
+            window.location = "demo_json.php?x=" + myJSON;
+        }
+
+        function recInfo() {
+            document.getElementById("demo").innerHTML = myObj.name;
         }
 
         function zoomed(d) {
