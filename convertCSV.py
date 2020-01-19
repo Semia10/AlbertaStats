@@ -123,4 +123,11 @@ with open('data.csv', mode='w') as data:
     employee_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     for row in ridings:
-        employee_writer.writerow(ridings[row])
+        temp = ridings[row]
+
+        insert = []
+
+        for x in temp:
+            insert.append(x[1])
+        
+        employee_writer.writerow(insert)
